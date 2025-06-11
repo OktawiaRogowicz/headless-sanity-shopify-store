@@ -1,14 +1,9 @@
 import {defineField, defineType} from 'sanity'
 import {BulbOutlineIcon} from '@sanity/icons'
 
-/**
- * Call to action schema object.  Objects are reusable schema structures document.
- * Learn more: https://www.sanity.io/docs/object-type
- */
-
-export const callToAction = defineType({
-  name: 'callToAction',
-  title: 'Call to Action',
+export const heroSection = defineType({
+  name: 'heroSection',
+  title: 'Hero Section',
   type: 'object',
   icon: BulbOutlineIcon,
   validation: (Rule) =>
