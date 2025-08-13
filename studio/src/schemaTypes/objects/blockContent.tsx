@@ -1,4 +1,5 @@
-import {defineArrayMember, defineType, defineField} from 'sanity'
+import {defineArrayMember, defineType, defineField, ArrayOfType} from 'sanity'
+import {link} from "./link";
 
 /**
  * This is the schema definition for the rich text fields used for
@@ -21,11 +22,7 @@ export const blockContent = defineType({
       type: 'block',
       marks: {
         annotations: [
-          {
-            name: 'link',
-            type: 'link',
-            title: 'Link',
-          }
+          link as ArrayOfType<"object" | "reference", undefined>
         ],
       },
     }),

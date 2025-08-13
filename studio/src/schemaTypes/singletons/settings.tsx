@@ -1,7 +1,8 @@
 import {CogIcon} from '@sanity/icons'
-import {defineArrayMember, defineField, defineType} from 'sanity'
+import {ArrayOfType, defineArrayMember, defineField, defineType} from 'sanity'
 
 import * as demo from '../../lib/initialValues'
+import {link} from "../objects/link";
 
 /**
  * Settings schema Singleton.  Singletons are single documents that are displayed not in a collection, handy for things like site settings and other global configurations.
@@ -38,11 +39,7 @@ export const settings = defineType({
           marks: {
             decorators: [],
             annotations: [
-              {
-                name: 'link',
-                type: 'link',
-                title: 'Link',
-              }
+              link as ArrayOfType<"object" | "reference", undefined>
             ],
           },
         }),
