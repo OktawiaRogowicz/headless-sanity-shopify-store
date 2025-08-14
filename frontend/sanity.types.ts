@@ -15,14 +15,18 @@
 // Source: schema.json
 export type HeroSection = {
   _type: "heroSection";
-  title: string;
-  link: Link;
-  backgroundImages: Array<{
+  title?: string;
+  link?: Link;
+  backgroundImages?: Array<{
     image?: Media;
     _type: "backgroundImage";
     _key: string;
   }>;
 };
+
+export type PageBuilder = Array<{
+  _key: string;
+} & HeroSection>;
 
 export type BlockContent = Array<{
   children?: Array<{
@@ -66,9 +70,9 @@ export type Footer = {
     }>;
     copyright?: string;
   };
-  menu: Array<{
-    label: string;
-    link: Link;
+  menu?: Array<{
+    label?: string;
+    link?: Link;
     _type: "menuItem";
     _key: string;
   }>;
@@ -80,10 +84,10 @@ export type Header = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  logo: Media;
-  menu: Array<{
-    label: string;
-    link: Link;
+  logo?: Media;
+  menu?: Array<{
+    label?: string;
+    link?: Link;
     _type: "menuItem";
     _key: string;
   }>;
@@ -108,7 +112,7 @@ export type Settings = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title: string;
+  title?: string;
   description?: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -157,18 +161,16 @@ export type Page = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  name: string;
-  slug: Slug;
-  heading: string;
+  name?: string;
+  slug?: Slug;
+  heading?: string;
   subheading?: string;
-  pageBuilder?: Array<{
-    _key: string;
-  } & HeroSection>;
+  pageBuilder?: PageBuilder;
 };
 
 export type Media = {
   _type: "media";
-  image: {
+  image?: {
     asset?: {
       _ref: string;
       _type: "reference";
@@ -193,7 +195,7 @@ export type Media = {
     crop?: SanityImageCrop;
     _type: "image";
   };
-  alt: string;
+  alt?: string;
 };
 
 export type SanityAssistInstructionTask = {
@@ -232,7 +234,7 @@ export type SanityAssistOutputField = {
 
 export type SanityAssistInstructionContext = {
   _type: "sanity.assist.instruction.context";
-  reference: {
+  reference?: {
     _ref: string;
     _type: "reference";
     _weak?: boolean;
@@ -265,7 +267,7 @@ export type AssistInstructionContext = {
 
 export type SanityAssistInstructionUserInput = {
   _type: "sanity.assist.instruction.userInput";
-  message: string;
+  message?: string;
   description?: string;
 };
 
@@ -424,7 +426,7 @@ export type Geopoint = {
 
 export type Slug = {
   _type: "slug";
-  current: string;
+  current?: string;
   source?: string;
 };
 
@@ -435,7 +437,7 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = HeroSection | BlockContent | Footer | Header | Link | Settings | Page | Media | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = HeroSection | PageBuilder | BlockContent | Footer | Header | Link | Settings | Page | Media | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
 // Variable: settingsQuery
@@ -446,7 +448,7 @@ export type SettingsQueryResult = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title: string;
+  title?: string;
   description?: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -493,16 +495,16 @@ export type SettingsQueryResult = {
 export type GetPageQueryResult = {
   _id: string;
   _type: "page";
-  name: string;
-  slug: Slug;
-  heading: string;
+  name: string | null;
+  slug: Slug | null;
+  heading: string | null;
   subheading: string | null;
   pageBuilder: Array<{
     _key: string;
     _type: "heroSection";
-    title: string;
-    link: Link;
-    backgroundImages: Array<{
+    title?: string;
+    link?: Link;
+    backgroundImages?: Array<{
       image?: Media;
       _type: "backgroundImage";
       _key: string;
@@ -512,7 +514,7 @@ export type GetPageQueryResult = {
 // Variable: sitemapData
 // Query: *[_type == "page" || _type == "post" && defined(slug.current)] | order(_type asc) {    "slug": slug.current,    _type,    _updatedAt,  }
 export type SitemapDataResult = Array<{
-  slug: string;
+  slug: string | null;
   _type: "page";
   _updatedAt: string;
 }>;
@@ -531,7 +533,7 @@ export type PostPagesSlugsResult = Array<never>;
 // Variable: pagesSlugs
 // Query: *[_type == "page" && defined(slug.current)]  {"slug": slug.current}
 export type PagesSlugsResult = Array<{
-  slug: string;
+  slug: string | null;
 }>;
 
 // Query TypeMap

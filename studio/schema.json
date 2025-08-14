@@ -17,7 +17,7 @@
           "value": {
             "type": "string"
           },
-          "optional": false
+          "optional": true
         },
         "link": {
           "type": "objectAttribute",
@@ -25,7 +25,7 @@
             "type": "inline",
             "name": "link"
           },
-          "optional": false
+          "optional": true
         },
         "backgroundImages": {
           "type": "objectAttribute",
@@ -63,7 +63,29 @@
               }
             }
           },
-          "optional": false
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "name": "pageBuilder",
+    "type": "type",
+    "value": {
+      "type": "array",
+      "of": {
+        "type": "object",
+        "attributes": {
+          "_key": {
+            "type": "objectAttribute",
+            "value": {
+              "type": "string"
+            }
+          }
+        },
+        "rest": {
+          "type": "inline",
+          "name": "heroSection"
         }
       }
     }
@@ -409,7 +431,7 @@
                 "value": {
                   "type": "string"
                 },
-                "optional": false
+                "optional": true
               },
               "link": {
                 "type": "objectAttribute",
@@ -417,7 +439,7 @@
                   "type": "inline",
                   "name": "link"
                 },
-                "optional": false
+                "optional": true
               },
               "_type": {
                 "type": "objectAttribute",
@@ -440,7 +462,7 @@
             }
           }
         },
-        "optional": false
+        "optional": true
       }
     }
   },
@@ -485,7 +507,7 @@
           "type": "inline",
           "name": "media"
         },
-        "optional": false
+        "optional": true
       },
       "menu": {
         "type": "objectAttribute",
@@ -499,7 +521,7 @@
                 "value": {
                   "type": "string"
                 },
-                "optional": false
+                "optional": true
               },
               "link": {
                 "type": "objectAttribute",
@@ -507,7 +529,7 @@
                   "type": "inline",
                   "name": "link"
                 },
-                "optional": false
+                "optional": true
               },
               "_type": {
                 "type": "objectAttribute",
@@ -530,7 +552,7 @@
             }
           }
         },
-        "optional": false
+        "optional": true
       }
     }
   },
@@ -651,7 +673,7 @@
         "value": {
           "type": "string"
         },
-        "optional": false
+        "optional": true
       },
       "description": {
         "type": "objectAttribute",
@@ -974,7 +996,7 @@
         "value": {
           "type": "string"
         },
-        "optional": false
+        "optional": true
       },
       "slug": {
         "type": "objectAttribute",
@@ -982,14 +1004,14 @@
           "type": "inline",
           "name": "slug"
         },
-        "optional": false
+        "optional": true
       },
       "heading": {
         "type": "objectAttribute",
         "value": {
           "type": "string"
         },
-        "optional": false
+        "optional": true
       },
       "subheading": {
         "type": "objectAttribute",
@@ -1001,22 +1023,8 @@
       "pageBuilder": {
         "type": "objectAttribute",
         "value": {
-          "type": "array",
-          "of": {
-            "type": "object",
-            "attributes": {
-              "_key": {
-                "type": "objectAttribute",
-                "value": {
-                  "type": "string"
-                }
-              }
-            },
-            "rest": {
-              "type": "inline",
-              "name": "heroSection"
-            }
-          }
+          "type": "inline",
+          "name": "pageBuilder"
         },
         "optional": true
       }
@@ -1102,7 +1110,7 @@
               }
             }
           },
-          "optional": false
+          "optional": true
         },
         "overrideMobileImage": {
           "type": "objectAttribute",
@@ -1185,7 +1193,7 @@
           "value": {
             "type": "string"
           },
-          "optional": false
+          "optional": true
         }
       }
     }
@@ -1411,7 +1419,7 @@
             },
             "dereferencesTo": "assist.instruction.context"
           },
-          "optional": false
+          "optional": true
         }
       }
     }
@@ -1590,7 +1598,7 @@
           "value": {
             "type": "string"
           },
-          "optional": false
+          "optional": true
         },
         "description": {
           "type": "objectAttribute",
@@ -2570,7 +2578,7 @@
           "value": {
             "type": "string"
           },
-          "optional": false
+          "optional": true
         },
         "source": {
           "type": "objectAttribute",
