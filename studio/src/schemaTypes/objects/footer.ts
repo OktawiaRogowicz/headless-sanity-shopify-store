@@ -4,7 +4,23 @@ export const footer = defineType({
   name: 'footer',
   title: 'Footer',
   type: 'document',
+  groups: [
+    {
+      name: 'content',
+      title: 'Content',
+    },
+    {
+      name: 'settings',
+      title: 'Settings',
+    },
+  ],
   fields: [
+    defineField({
+      name: 'language',
+      type: 'string',
+      readOnly: true,
+      group: 'settings',
+    }),
     defineField({
       name: 'content',
       title: 'Content',
@@ -40,6 +56,7 @@ export const footer = defineType({
           type: 'string',
         }),
       ],
+      group: 'content',
     }),
     defineField({
       name: 'menu',
@@ -68,6 +85,7 @@ export const footer = defineType({
         }),
       ],
       validation: (Rule) => Rule.required(),
+      group: 'content',
     }),
   ],
 })

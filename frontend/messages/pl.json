@@ -1,0 +1,12 @@
+{
+  "header": {
+    "buttons": {
+      "sign-in": "Registrar-se",
+      "locale-settings": "Locale settings"
+    },
+    "locale-settings": {
+      "currency": "Currency",
+      "language": "Language"
+    }
+  }
+}

@@ -5,6 +5,7 @@
 
 import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
+import {documentInternationalization} from '@sanity/document-internationalization'
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './src/schemaTypes'
 import {structure} from './src/structure'
@@ -16,15 +17,13 @@ import {
   type DocumentLocation,
 } from 'sanity/presentation'
 import {assist} from '@sanity/assist'
+import {i18n} from './languages'
+import {colorInput} from '@sanity/color-input'
 
-// Environment variables for project configuration
 const projectId = process.env.SANITY_STUDIO_PROJECT_ID || 'your-projectID'
 const dataset = process.env.SANITY_STUDIO_DATASET || 'production'
-
-// URL for preview functionality, defaults to localhost:3000 if not set
 const SANITY_STUDIO_PREVIEW_URL = process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3000'
 
-// Define the home location for the presentation tool
 const homeLocation = {
   title: 'Home',
   href: '/',
@@ -53,6 +52,11 @@ export default defineConfig({
   dataset,
 
   plugins: [
+    colorInput(),
+    documentInternationalization({
+      supportedLanguages: i18n.languages,
+      schemaTypes: ['page'],
+    }),
     // Presentation tool configuration for Visual Editing
     presentationTool({
       previewUrl: {

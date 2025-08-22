@@ -4,12 +4,29 @@ export const header = defineType({
   name: 'header',
   title: 'Header',
   type: 'document',
+  groups: [
+    {
+      name: 'content',
+      title: 'Content',
+    },
+    {
+      name: 'settings',
+      title: 'Settings',
+    },
+  ],
   fields: [
+    defineField({
+      name: 'language',
+      type: 'string',
+      readOnly: true,
+      group: 'settings',
+    }),
     defineField({
       name: 'logo',
       title: 'Logo',
       type: 'media',
       validation: (Rule) => Rule.required(),
+      group: 'content',
     }),
     defineField({
       name: 'menu',
@@ -38,6 +55,7 @@ export const header = defineType({
         }),
       ],
       validation: (Rule) => Rule.required(),
+      group: 'content',
     }),
   ],
 })
