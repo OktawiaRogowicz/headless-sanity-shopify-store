@@ -490,8 +490,88 @@ export type SettingsQueryResult = {
     _type: "image";
   };
 } | null;
+// Variable: footerQuery
+// Query: *[_type == "footer" && language == $locale][0] {    ...,  }
+export type FooterQueryResult = {
+  _id: string;
+  _type: "footer";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  content?: {
+    contentBlocks?: Array<{
+      title?: string;
+      description?: BlockContent;
+      _type: "contentBlock";
+      _key: string;
+    }>;
+    copyright?: string;
+  };
+  menu?: Array<{
+    label?: string;
+    link?: Link;
+    _type: "menuItem";
+    _key: string;
+  }>;
+} | null;
+// Variable: headerQuery
+// Query: *[_type == "header" && language == $locale][0] {    ...,  }
+export type HeaderQueryResult = {
+  _id: string;
+  _type: "header";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  logo?: Media;
+  menu?: Array<{
+    label?: string;
+    link?: Link;
+    _type: "menuItem";
+    _key: string;
+  }>;
+} | null;
+// Variable: siteConfigurationQuery
+// Query: {    "footer":   *[_type == "footer" && language == $locale][0] {    ...,  },    "header":   *[_type == "header" && language == $locale][0] {    ...,  }}
+export type SiteConfigurationQueryResult = {
+  footer: {
+    _id: string;
+    _type: "footer";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    content?: {
+      contentBlocks?: Array<{
+        title?: string;
+        description?: BlockContent;
+        _type: "contentBlock";
+        _key: string;
+      }>;
+      copyright?: string;
+    };
+    menu?: Array<{
+      label?: string;
+      link?: Link;
+      _type: "menuItem";
+      _key: string;
+    }>;
+  } | null;
+  header: {
+    _id: string;
+    _type: "header";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    logo?: Media;
+    menu?: Array<{
+      label?: string;
+      link?: Link;
+      _type: "menuItem";
+      _key: string;
+    }>;
+  } | null;
+};
 // Variable: getPageQuery
-// Query: *[_type == 'page' && slug.current == $slug][0]{    _id,    _type,    name,    slug,    heading,    subheading,    "pageBuilder": pageBuilder[]{      ...,      _type == "heroSection" => {        ...,      },    },  }
+// Query: *[_type == 'page' && slug.current == $slug && language == $locale][0]{    _id,    _type,    name,    slug,    heading,    subheading,    "pageBuilder": pageBuilder[]{      ...,      _type == "heroSection" => {        ...,      },    },    "translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->{       title,       slug,       language    },  }
 export type GetPageQueryResult = {
   _id: string;
   _type: "page";
@@ -510,6 +590,7 @@ export type GetPageQueryResult = {
       _key: string;
     }>;
   }> | null;
+  translations: Array<never>;
 } | null;
 // Variable: sitemapData
 // Query: *[_type == "page" || _type == "post" && defined(slug.current)] | order(_type asc) {    "slug": slug.current,    _type,    _updatedAt,  }
@@ -541,7 +622,10 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "*[_type == \"settings\" && language == $locale][0]": SettingsQueryResult;
-    "\n  *[_type == 'page' && slug.current == $slug][0]{\n    _id,\n    _type,\n    name,\n    slug,\n    heading,\n    subheading,\n    \"pageBuilder\": pageBuilder[]{\n      ...,\n      _type == \"heroSection\" => {\n        ...,\n      },\n    },\n  }\n": GetPageQueryResult;
+    "\n  *[_type == \"footer\" && language == $locale][0] {\n    ...,\n  }\n": FooterQueryResult;
+    "\n  *[_type == \"header\" && language == $locale][0] {\n    ...,\n  }\n": HeaderQueryResult;
+    "\n{\n    \"footer\": \n  *[_type == \"footer\" && language == $locale][0] {\n    ...,\n  }\n,\n    \"header\": \n  *[_type == \"header\" && language == $locale][0] {\n    ...,\n  }\n\n}\n": SiteConfigurationQueryResult;
+    "\n  *[_type == 'page' && slug.current == $slug && language == $locale][0]{\n    _id,\n    _type,\n    name,\n    slug,\n    heading,\n    subheading,\n    \"pageBuilder\": pageBuilder[]{\n      ...,\n      _type == \"heroSection\" => {\n        ...,\n      },\n    },\n    \"translations\": *[_type == \"translation.metadata\" && references(^._id)].translations[].value->{\n       title,\n       slug,\n       language\n    },\n  }\n": GetPageQueryResult;
     "\n  *[_type == \"page\" || _type == \"post\" && defined(slug.current)] | order(_type asc) {\n    \"slug\": slug.current,\n    _type,\n    _updatedAt,\n  }\n": SitemapDataResult;
     "\n  *[_type == \"post\" && defined(slug.current)] | order(date desc, _updatedAt desc) {\n    \n  _id,\n  \"status\": select(_originalId in path(\"drafts.**\") => \"draft\", \"published\"),\n  \"title\": coalesce(title, \"Untitled\"),\n  \"slug\": slug.current,\n  excerpt,\n  coverImage,\n  \"date\": coalesce(date, _updatedAt),\n  \"author\": author->{firstName, lastName, picture},\n\n  }\n": AllPostsQueryResult;
     "\n  *[_type == \"post\" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {\n    \n  _id,\n  \"status\": select(_originalId in path(\"drafts.**\") => \"draft\", \"published\"),\n  \"title\": coalesce(title, \"Untitled\"),\n  \"slug\": slug.current,\n  excerpt,\n  coverImage,\n  \"date\": coalesce(date, _updatedAt),\n  \"author\": author->{firstName, lastName, picture},\n\n  }\n": MorePostsQueryResult;

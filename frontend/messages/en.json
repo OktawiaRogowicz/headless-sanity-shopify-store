@@ -1,12 +1,14 @@
 {
-  "header": {
-    "buttons": {
-      "sign-in": "Sign in",
-      "locale-settings": "Locale settings"
-    },
-    "locale-settings": {
-      "currency": "Currency",
-      "language": "Language"
+  "footer": {
+    "design-and-development": "Design & Development: Oktawia Rogowicz"
+  },
+  "components": {
+    "page-builder": {
+      "empty-state": {
+        "title": "This page has no content!",
+        "description": "Open the page in Sanity Studio to add content.",
+        "button": "Add content to this page"
+      }
     }
   }
 }

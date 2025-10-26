@@ -1,6 +1,8 @@
 import { defineQuery } from "next-sanity";
 
-export const settingsQuery = defineQuery(`*[_type == "settings"][0]`);
+export const settingsQuery = defineQuery(
+  `*[_type == "settings" && language == $locale][0]`,
+);
 
 const postFields = /* groq */ `
   _id,
@@ -26,8 +28,33 @@ const linkFields = /* groq */ `
       }
 `;
 
+export const footerQuery = defineQuery(`
+  *[_type == "footer" && language == $locale][0] {
+    ...,
+  }
+`);
+
+export const headerQuery = defineQuery(`
+  *[_type == "header" && language == $locale][0] {
+    ...,
+  }
+`);
+
+export const siteConfigurationQuery = defineQuery(`
+{
+    "footer": ${footerQuery},
+    "header": ${headerQuery}
+}
+`);
+
+export const getPageSlugsQuery = defineQuery(`
+  *[_type == 'page' && slug.current == $slug]{
+    slug,
+  }
+`);
+
 export const getPageQuery = defineQuery(`
-  *[_type == 'page' && slug.current == $slug][0]{
+  *[_type == 'page' && slug.current == $slug && language == $locale][0]{
     _id,
     _type,
     name,
@@ -39,6 +66,11 @@ export const getPageQuery = defineQuery(`
       _type == "heroSection" => {
         ...,
       },
+    },
+    "translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->{
+       title,
+       slug,
+       language
     },
   }
 `);

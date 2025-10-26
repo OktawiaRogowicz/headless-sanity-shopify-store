@@ -1,12 +1,5 @@
 {
-  "header": {
-    "buttons": {
-      "sign-in": "Registrar-se",
-      "locale-settings": "Locale settings"
-    },
-    "locale-settings": {
-      "currency": "Currency",
-      "language": "Language"
-    }
+  "footer": {
+    "design-and-development": "Design & Development: Oktawia Rogowicz"
   }
 }

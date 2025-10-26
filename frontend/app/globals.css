@@ -1,11 +1,93 @@
 @import "tailwindcss";
+@import "./typography.css";
 
 @plugin "@tailwindcss/typography";
 
-
 @theme {
+
   --font-display: "Inter", "sans-serif";
   --font-sans: "Inter", "sans-serif";
 
   --default-transition-duration: 250ms;
+
+  /* COLOURS */
+  --color-off-white: #FAF6EF;
+  --color-brown: #2F240E;
+  --color-light-brown: #796570;
+  --color-beige: #95897A;
+
+
+  /* ANIMATIONS */
+  --animate-slide-up-and-fade: slide-up-and-fade 0.2s ease-in-out;
+  @keyframes slide-up-and-fade {
+    from {
+      opacity: 0;
+      transform: translateY(2px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+
+  --animate-slide-right-and-fade: slide-right-and-fade 0.2s ease-in-out;
+  @keyframes slide-right-and-fade {
+    from {
+      opacity: 0;
+      transform: translateX(-2px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+  }
+
+  --animate-slide-down-and-fade: slide-down-and-fade 0.2s ease-in-out;
+  @keyframes slide-down-and-fade {
+    from {
+      opacity: 0;
+      transform: translateY(-2px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+
+  --animate-slide-left-and-fade: slide-left-and-fade 0.2s ease-in-out;
+  @keyframes slide-left-and-fade {
+    from {
+      opacity: 0;
+      transform: translateX(2px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+  }
+}
+
+
+
+@layer base {
+
+  html {
+    /*@apply scroll-pt-[174px] laptop:scroll-pt-[90px];*/
+    /*  mobile: 74px (header height) + 100px (table of Contents mobile size) */
+    /*  laptop: 74px (header height) + 16px (table of Contents gap from header)  */
+    background-color: var(--color-off-white);
+    color: var(--color-brown);
+  }
+
+  * {
+    @apply box-border;
+  }
+
+  body {
+    @apply m-0 p-0;
+  }
+
+  .container {
+    @apply mx-auto px-24 !max-w-[1440px];
+  }
 }

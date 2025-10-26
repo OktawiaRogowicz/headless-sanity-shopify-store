@@ -9,7 +9,7 @@ import {
 } from '@sanity/icons'
 import type {StructureBuilder, StructureResolver} from 'sanity/structure'
 
-import {i18n} from '../../languages'
+import {i18n} from '../../../languages'
 import {ForwardRefExoticComponent, PropsWithoutRef, RefAttributes, SVGProps} from 'react'
 
 interface SingletonProps {

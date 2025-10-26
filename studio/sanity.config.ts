@@ -17,7 +17,7 @@ import {
   type DocumentLocation,
 } from 'sanity/presentation'
 import {assist} from '@sanity/assist'
-import {i18n} from './languages'
+import {i18n} from '../languages'
 import {colorInput} from '@sanity/color-input'
 
 const projectId = process.env.SANITY_STUDIO_PROJECT_ID || 'your-projectID'

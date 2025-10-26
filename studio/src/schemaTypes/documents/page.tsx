@@ -106,14 +106,15 @@ export const page = defineType({
   preview: {
     select: {
       title: 'name',
+      slug: 'slug.current',
       description: 'language',
       pageBuilder: 'pageBuilder',
     },
-    prepare: ({title, description, pageBuilder}) => {
+    prepare: ({title, slug, description, pageBuilder}) => {
       const mediaSrc = pageBuilder?.[0]?._type
       return {
         title,
-        subtitle: description?.toUpperCase() || '',
+        subtitle: `${description?.toUpperCase()} | ${slug}`,
         media: () => (
           <img src={`/static/page-builder-thumbnails/${mediaSrc}.png`} alt="Preview of Page.tsx." />
         ),

@@ -18,6 +18,8 @@ import { handleError } from "../client-utils";
 import { ReactNode } from "react";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
+import { LocaleSettingsContextProvider } from "@/contexts/localeSettingsContext";
+import { Locale } from "@/i18n/routing";
 
 /**
  * Generate metadata for the page.
@@ -69,23 +71,17 @@ const inter = Inter({
 
 export type LocalePageType = {
   children: ReactNode;
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale: Locale }>;
 };
 
 export default async function RootLayout({ children, params }: LocalePageType) {
   const { locale } = await params;
   const { isEnabled: isDraftMode } = await draftMode();
 
-  const { data: settings } = await sanityFetch({
-    query: settingsQuery,
-    params: {
-      locale,
-    },
-  });
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={`${inter.variable} bg-white text-black`}>
+    <html lang={locale} className={`${inter.variable}`}>
       <body>
         <section className="min-h-screen">
           {/* The <Toaster> component is responsible for rendering toast notifications used in /app/client-utils.ts and /app/components/DraftModeToast.tsx */}
@@ -100,9 +96,9 @@ export default async function RootLayout({ children, params }: LocalePageType) {
           {/* The <SanityLive> component is responsible for making all sanityFetch calls in your application live, so should always be rendered. */}
           <SanityLive onError={handleError} />
           <NextIntlClientProvider messages={messages}>
-            <Header />
-            <main className="">{children}</main>
-            <Footer />
+            <LocaleSettingsContextProvider>
+              {children}
+            </LocaleSettingsContextProvider>
           </NextIntlClientProvider>
         </section>
         <SpeedInsights />

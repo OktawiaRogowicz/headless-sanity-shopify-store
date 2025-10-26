@@ -1,0 +1,72 @@
+@theme {
+  --text-h1: 4rem;
+  --text-h1--font-weight: 300;
+  --text-h1-font-style: italic;
+  --text-h1--line-height: 1.2;
+  --text-h1--letter-spacing: 0.5px;
+
+  --text-h2: 3rem;
+  --text-h2--font-weight: 300;
+  --text-h2-font-style: italic;
+  --text-h2--line-height: 1.2;
+  --text-h2--letter-spacing: 0.5px;
+
+  --text-h3: 2.25rem;
+  --text-h3--font-weight: 300;
+  --text-h3-font-style: italic;
+  --text-h3--line-height: 1.2;
+  --text-h3--letter-spacing: 0.5px;
+
+  --text-h4: 1.5rem;
+  --text-h4--font-weight: 300;
+  --text-h4-font-style: italic;
+  --text-h4--line-height: 1.2;
+  --text-h4--letter-spacing: 0.5px;
+
+  --text-h5: 1rem;
+  --text-h5--font-weight: 300;
+  --text-h5-font-style: italic;
+  --text-h5--line-height: 1.2;
+  --text-h5--letter-spacing: 0.5px;
+
+
+
+  --text-L-semibold: 1.125rem;
+  --text-L-semibold--font-weight: 600;
+  --text-L-semibold--line-height: 1.2;
+  --text-L-semibold---letter-spacing: 1px;
+
+  --text-L-regular: 1.125rem;
+  --text-L-regular--font-weight: 400;
+  --text-L-regular--line-height: 1.2;
+
+
+  --text-M-semibold: 1rem;
+  --text-M-semibold--font-weight: 600;
+  --text-M-semibold--line-height: 1.2;
+  --text-M-semibold---letter-spacing: 1px;
+
+  --text-M-regular: 1rem;
+  --text-M-regular--font-weight: 400;
+  --text-M-regular--line-height: 1.2;
+
+
+  --text-S-semibold: 0.875rem;
+  --text-S-semibold--font-weight: 600;
+  --text-S-semibold--line-height: 1.2;
+  --text-S-semibold---letter-spacing: 1px;
+
+  --text-S-light: 0.875rem;
+  --text-S-light--font-weight: 300;
+  --text-S-light--line-height: 1.2;
+
+
+  --text-XS-semibold: 0.75rem;
+  --text-XS-semibold--font-weight: 600;
+  --text-XS-semibold--line-height: 1.2;
+  --text-XS-semibold---letter-spacing: 1px;
+
+  --text-XS-light: 0.75rem;
+  --text-XS-light--font-weight: 300;
+  --text-XS-light--line-height: 1.2;
+}

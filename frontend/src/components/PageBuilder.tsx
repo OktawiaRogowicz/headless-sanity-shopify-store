@@ -8,6 +8,7 @@ import BlockRenderer from "@/components/BlockRenderer";
 import { GetPageQueryResult } from "@/sanity.types";
 import { dataAttr } from "@/sanity/lib/utils";
 import { studioUrl } from "@/sanity/lib/api";
+import { useTranslations } from "next-intl";
 
 type PageBuilderPageProps = {
   page: GetPageQueryResult;
@@ -56,18 +57,24 @@ function renderSections(
   );
 }
 
-function renderEmptyState(page: GetPageQueryResult) {
+function renderEmptyState(
+  page: GetPageQueryResult,
+  translations: {
+    title: string;
+    description: string;
+    button: string;
+  },
+) {
   if (!page) {
     return null;
   }
+
   return (
     <div className="container">
       <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl">
-        This page has no content!
+        {translations.title}
       </h1>
-      <p className="mt-2 text-base text-gray-500">
-        Open the page in Sanity Studio to add content.
-      </p>
+      <p className="mt-2 text-base text-gray-500">{translations.description}</p>
       <div className="mt-10 flex">
         <Link
           className="rounded-full flex gap-2 mr-6 items-center bg-black hover:bg-brand focus:bg-blue py-3 px-6 text-white transition-colors duration-200"
@@ -75,7 +82,7 @@ function renderEmptyState(page: GetPageQueryResult) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Add content to this page
+          {translations.button}
         </Link>
       </div>
     </div>
@@ -107,12 +114,19 @@ export default function PageBuilder({ page }: PageBuilderPageProps) {
     // Otherwise keep the current sections
     return currentSections;
   });
+  const t = useTranslations("components.page-builder");
+
+  const emptyStateTranslations = {
+    title: t("empty-state.title"),
+    description: t("empty-state.description"),
+    button: t("empty-state.button"),
+  };
 
   if (!page) {
-    return renderEmptyState(page);
+    return renderEmptyState(page, emptyStateTranslations);
   }
 
   return pageBuilderSections && pageBuilderSections.length > 0
     ? renderSections(pageBuilderSections, page)
-    : renderEmptyState(page);
+    : renderEmptyState(page, emptyStateTranslations);
 }
